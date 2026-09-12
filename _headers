@@ -1,0 +1,16 @@
+/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  CDN-Cache-Control: no-store
+
+/js/*
+  Cache-Control: no-store
+  CDN-Cache-Control: no-store
+
+/api/*
+  Cache-Control: no-store
+  CDN-Cache-Control: no-store

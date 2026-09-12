@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GrokSync</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="theme-color" content="#071016" />
+    <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/public/fonts/fontshare/fonts.css" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <div>
+          <p class="kicker">Self-hosted device board</p>
+          <h1>GrokSync</h1>
+          <p class="sub" id="updated">Loading board...</p>
+        </div>
+        <div class="actions">
+          <button type="button" id="refresh">Refresh</button>
+          <button type="button" id="logout">Lock</button>
+        </div>
+      </header>
+
+      <section class="card span-2 continue" id="continue-card">
+        <h2>Continue</h2>
+        <div id="continue"></div>
+      </section>
+
+      <section class="card span-2" style="margin-bottom: 16px">
+        <h2>I am on</h2>
+        <div class="stamps" id="stamps">
+          <button type="button" data-device="pc">PC</button>
+          <button type="button" data-device="mac">Mac</button>
+          <button type="button" data-device="phone">Phone</button>
+          <button type="button" data-device="agent">Agent</button>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section class="card">
+          <h2>Devices</h2>
+          <div id="devices"></div>
+        </section>
+        <section class="card">
+          <h2>Sessions</h2>
+          <div id="sessions"></div>
+        </section>
+        <section class="card span-2">
+          <h2>Claims</h2>
+          <div id="claims"></div>
+        </section>
+        <section class="card">
+          <h2>Pickup</h2>
+          <div id="pickup"></div>
+        </section>
+        <section class="card">
+          <h2>Recent</h2>
+          <div id="journal"></div>
+        </section>
+      </div>
+    </div>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
