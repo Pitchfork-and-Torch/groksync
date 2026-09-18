@@ -63,6 +63,57 @@ function scrubPickup(pickup) {
   });
 }
 
+function scrubJournal(journal) {
+  if (!Array.isArray(journal)) return [];
+  return journal.slice(-12).map((j) => {
+    if (!j || typeof j !== "object") return { kind: "note", message: "", ts: null };
+    // Cap text; basename absolute path-looking messages (privacy invariant).
+    const raw = String(j.message || "").trim();
+    let message = cap(raw, 240);
+    const looksAbs =
+      /^([A-Za-z]:)?[\\/]/.test(raw) ||
+      raw.includes("\\") ||
+      raw.startsWith("~/");
+    if (looksAbs) {
+      const cleaned = cleanFiles([raw]);
+      message =
+        cleaned[0] ||
+        cap(raw.split(/[\\/]/).filter(Boolean).pop() || "", 240);
+    }
+    return {
+      kind: cap(j.kind || "note", 40),
+      message,
+      ts: j.ts != null ? cap(String(j.ts), 40) : null,
+    };
+  });
+}
+
+function scrubNotes(notes) {
+  if (!Array.isArray(notes)) return [];
+  return notes.slice(0, 20).map((n) => {
+    if (!n || typeof n !== "object") return { text: cap(n, 240) };
+    return {
+      ...n,
+      text: cap(n.text || n.note || n.message || "", 240),
+      note: n.note != null ? cap(n.note, 240) : undefined,
+      message: n.message != null ? cap(n.message, 240) : undefined,
+    };
+  });
+}
+
+function scrubBots(bots) {
+  if (!Array.isArray(bots)) return [];
+  return bots.slice(0, 20).map((b) => {
+    if (!b || typeof b !== "object") return { id: cap(b, 40) };
+    return {
+      id: cap(b.id, 40),
+      label: cap(b.label || b.id, 40),
+      note: cap(b.note || "", 240),
+      status: cap(b.status || "", 40),
+    };
+  });
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
   const kv = env.BOARD;
@@ -86,6 +137,7 @@ export async function onRequestPost(context) {
   const prev = prevRaw ? JSON.parse(prevRaw) : emptyBoard();
   // Privacy: snapshot used to merge the body raw, so absolute cwd/paths and
   // unclean context bypassed cleanFiles / cleanContext (unlike /api/context).
+  // Privacy: journal/notes/bots used to merge raw from body (paths/secrets).
   const next = {
     ...emptyBoard(),
     ...prev,
@@ -94,6 +146,9 @@ export async function onRequestPost(context) {
     sessions: scrubSessions(body.sessions ?? prev.sessions),
     claims: scrubClaims(body.claims ?? prev.claims),
     pickup: scrubPickup(body.pickup ?? prev.pickup),
+    journal: scrubJournal(body.journal ?? prev.journal),
+    notes: scrubNotes(body.notes ?? prev.notes),
+    bots: scrubBots(body.bots ?? prev.bots),
     context:
       body.context !== undefined ? cleanContext(body.context) : prev.context ?? null,
     updated_at: new Date().toISOString(),
