@@ -1,5 +1,27 @@
 import { emptyBoard, cleanFiles, cleanContext, cap } from "../_lib.js";
 
+const ALLOWED_DEVICES = new Set(["pc", "mac", "phone", "iphone", "agent", "grok-bot", "other"]);
+
+function scrubDevices(devices) {
+  if (!devices || typeof devices !== "object") return {};
+  const out = {};
+  for (const [rawId, raw] of Object.entries(devices)) {
+    const id = String(rawId || "").toLowerCase().trim();
+    if (!ALLOWED_DEVICES.has(id)) continue;
+    if (!raw || typeof raw !== "object") {
+      out[id] = { id, label: id, note: "", last_seen: null };
+      continue;
+    }
+    out[id] = {
+      id,
+      label: cap(raw.label || id, 40),
+      note: cap(raw.note || "", 240),
+      last_seen: raw.last_seen != null ? cap(String(raw.last_seen), 40) : null,
+    };
+  }
+  return out;
+}
+
 function scrubSessions(sessions) {
   if (!Array.isArray(sessions)) return [];
   return sessions.slice(0, 20).map((s) => {
@@ -68,7 +90,7 @@ export async function onRequestPost(context) {
     ...emptyBoard(),
     ...prev,
     ...body,
-    devices: { ...(prev.devices || {}), ...(body.devices || {}) },
+    devices: scrubDevices({ ...(prev.devices || {}), ...(body.devices || {}) }),
     sessions: scrubSessions(body.sessions ?? prev.sessions),
     claims: scrubClaims(body.claims ?? prev.claims),
     pickup: scrubPickup(body.pickup ?? prev.pickup),
