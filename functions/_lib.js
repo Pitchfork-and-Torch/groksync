@@ -31,9 +31,21 @@ export function cleanFiles(files) {
   if (!Array.isArray(files)) return [];
   const out = [];
   for (const f of files.slice(0, 12)) {
-    const s = String(f || "").replace(/\\/g, "/").replace(/^([A-Za-z]:)?\/+/, "");
+    let s = String(f || "").replace(/\\/g, "/").trim();
     if (!s || s.includes("..")) continue;
-    out.push(s.slice(0, 180));
+    // Privacy: absolute home/drive paths must not land on the board.
+    // Keep ~/slug and relative project paths; basename absolute paths.
+    if (/^~\//.test(s)) {
+      s = s.slice(0, 180);
+    } else if (/^([A-Za-z]:)?\//.test(s)) {
+      s = s.replace(/^([A-Za-z]:)?\/+/, "");
+      const parts = s.split("/").filter(Boolean);
+      s = parts.length ? parts[parts.length - 1].slice(0, 180) : "";
+    } else {
+      s = s.slice(0, 180);
+    }
+    if (!s) continue;
+    out.push(s);
   }
   return out;
 }
