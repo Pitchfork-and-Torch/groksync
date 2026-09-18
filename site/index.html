@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GrokSync - sit down anywhere, already know</title>
+    <meta name="description" content="Self-host a private board so your PC, laptop, phone, and agents share the same continue packet. MIT. Run your own." />
+    <link rel="canonical" href="https://groksync.jonbailey.xyz/" />
+    <meta name="theme-color" content="#071016" />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GrokSync" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://groksync.jonbailey.xyz/" />
+    <meta property="og:title" content="GrokSync - sit down anywhere, already know" />
+    <meta property="og:description" content="Sit down on any device and already know what you were doing on the others. Self-hosted. MIT." />
+    <meta property="og:image" content="https://groksync.jonbailey.xyz/og.jpg?v=1.2.0" />
+    <meta property="og:image:secure_url" content="https://groksync.jonbailey.xyz/og.jpg?v=1.2.0" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GrokSync phosphor ASCII devices" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@suddenlyjon" />
+    <meta name="twitter:creator" content="@suddenlyjon" />
+    <meta name="twitter:title" content="GrokSync - sit down anywhere, already know" />
+    <meta name="twitter:description" content="Self-host a private board for PC, laptop, phone, and agents. MIT." />
+    <meta name="twitter:image" content="https://groksync.jonbailey.xyz/og.jpg?v=1.2.0" />
+    <meta name="twitter:image:alt" content="GrokSync phosphor ASCII devices" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" />
+    <link rel="preload" href="/fonts/fontshare/clash-display/woff2/ClashDisplay-Semibold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fontshare/satoshi/woff2/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/fontshare/fonts.css" />
+    <link rel="stylesheet" href="/css/landing.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "GrokSync",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows, macOS, Linux, any browser",
+        "softwareVersion": "1.2.0",
+        "license": "https://opensource.org/licenses/MIT",
+        "url": "https://groksync.jonbailey.xyz/",
+        "downloadUrl": "https://github.com/Pitchfork-and-Torch/groksync",
+        "image": "https://groksync.jonbailey.xyz/og.jpg?v=1.2.0",
+        "description": "Self-hosted private board so work context follows you across devices and agents.",
+        "author": {
+          "@type": "Organization",
+          "name": "Pitchfork-and-Torch",
+          "url": "https://github.com/Pitchfork-and-Torch"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is GrokSync?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GrokSync is a self-hosted private board so your PC, laptop, phone, and agents share one continue packet. Sit down anywhere and already know what you were doing on the others."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a hosted GrokSync account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. You clone the MIT repo and host the site yourself. There is no public hosted account."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a continue packet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A short, redacted snapshot of the last project, a one-line note, and optional next step. It travels with you. Local claim checks stay on the machine you sat down at."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use it on a phone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. GrokSync is a website you host. Open your board URL in any browser on phone, laptop, or desktop."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where does my data live?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On the host you deploy. Password gate. Optional encrypted notes. Nothing here is a vendor cloud that reads your disk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What license is it under?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MIT. Fonts under public/fonts/fontshare keep their ITF Free Font License files."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav">
+      <a class="wordmark" href="/">
+        <span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        GrokSync
+      </a>
+      <nav class="nav-links" aria-label="Page">
+        <a href="#features">Board</a>
+        <a href="#how">How</a>
+        <a href="#setup">Setup</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-end">
+        <a class="x-follow" href="https://x.com/suddenlyjon" target="_blank" rel="noopener noreferrer" aria-label="Follow @suddenlyjon on X" title="Follow @suddenlyjon on X">
+          <span class="x-follow-mark">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.726-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </span>
+          <span class="x-follow-handle">@suddenlyjon</span>
+        </a>
+        <a class="nav-cta" href="https://github.com/Pitchfork-and-Torch/groksync">Get the code</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="wrap">
+        <section class="hero" id="hero">
+          <div class="hero-copy">
+            <p class="kicker">Self-hosted continue packet</p>
+            <h1>Sit down anywhere. Already know.</h1>
+            <p class="lede">Your PC, laptop, phone, and agents share one private board. Last project, a one-line note, the seat you sat in. You host it. MIT.</p>
+            <div class="ctas">
+              <a class="btn primary" href="https://github.com/Pitchfork-and-Torch/groksync">Get the code</a>
+              <a class="btn" href="#how">How it works</a>
+            </div>
+            <ul class="proof">
+              <li>Self-hosted</li>
+              <li>Password gate</li>
+              <li>No public accounts</li>
+            </ul>
+          </div>
+
+          <aside class="packet" aria-label="Continue packet example">
+            <div class="packet-bar">
+              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              groksync.your-host
+            </div>
+            <div class="packet-body">
+              <p class="packet-kicker">Continue</p>
+              <p class="packet-title">my-app</p>
+              <p class="packet-note">Pick up the auth branch. Login tests still open.</p>
+              <dl class="meta-grid">
+                <div class="meta">
+                  <dt>Seat</dt>
+                  <dd>laptop</dd>
+                </div>
+                <div class="meta">
+                  <dt>Next</dt>
+                  <dd>finish login tests</dd>
+                </div>
+                <div class="meta">
+                  <dt>Claim</dt>
+                  <dd>clear</dd>
+                </div>
+                <div class="meta">
+                  <dt>Files</dt>
+                  <dd>src/auth.ts</dd>
+                </div>
+              </dl>
+              <div class="seats" aria-label="Example devices">
+                <span class="seat"><span class="dot"></span>PC</span>
+                <span class="seat" data-live="true"><span class="dot"></span>Laptop</span>
+                <span class="seat"><span class="dot"></span>Phone</span>
+                <span class="seat"><span class="dot"></span>Agent</span>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="section" id="features">
+          <div class="section-head">
+            <p class="kicker">The board</p>
+            <h2>Context that follows you, not a feed.</h2>
+            <p>One continue packet. Device stamps. Handoff. Optional encrypted notes. Nothing here is analytics or a vendor cloud.</p>
+          </div>
+          <div class="bento">
+            <article class="tile tile-continue">
+              <p class="kicker">Continue</p>
+              <h3>Last project and a one-line note travel with you.</h3>
+              <p>Phone, laptop, desktop, agent. Sit down and the packet is waiting.</p>
+            </article>
+            <article class="tile">
+              <h3>Handoff</h3>
+              <p>Stamp the device you sat down at. The continue packet stays. Local claim checks stay local.</p>
+            </article>
+            <article class="tile">
+              <h3>Private</h3>
+              <p>Password gate. Optional encrypted notes. You own the KV. No hosted account.</p>
+            </article>
+            <article class="tile">
+              <h3>Any browser</h3>
+              <p>Phone, laptop, desktop. The board is a URL you host. No installer.</p>
+            </article>
+            <article class="tile">
+              <h3>Agents</h3>
+              <p>CLI and MCP pull the same packet. Paths are slugs, never home directories.</p>
+            </article>
+            <article class="tile">
+              <h3>Encrypt</h3>
+              <p>Notes can stay ciphertext on the board. Decrypt only on a machine that has the key.</p>
+            </article>
+          </div>
+        </section>
+
+        <figure class="scene">
+          <img
+            src="/ascii/desk-ascii.png"
+            width="1440"
+            height="804"
+            alt="Phosphor ASCII desk: monitor, person, phone. The machines you actually sit at."
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
+        <section class="section" id="how">
+          <div class="section-head">
+            <p class="kicker">How it works</p>
+            <h2>Host it. Stamp the seat. Continue.</h2>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <h3>Host your board</h3>
+              <p>You run a private website. Password on the door. You own what is on it.</p>
+            </article>
+            <article class="step">
+              <h3>Stamp the seat</h3>
+              <p>Unlock in the browser and mark the device you sat down at. The continue packet stays.</p>
+            </article>
+            <article class="step">
+              <h3>Pick up anywhere</h3>
+              <p>Next device reads the same packet. Agents can use it too.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="setup">
+          <div class="section-head">
+            <p class="kicker">Run your own</p>
+            <h2>Clone, deploy, continue.</h2>
+            <p>Clone the repo. Host the site. Details are in the README.</p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-bar">
+              Setup
+              <button class="copy" id="copy-setup" type="button">Copy</button>
+            </div>
+            <pre class="setup" id="setup-block">git clone https://github.com/Pitchfork-and-Torch/groksync
+cd groksync
+# Host it yourself. See README.</pre>
+          </div>
+        </section>
+
+        <section class="section" id="faq">
+          <div class="section-head">
+            <p class="kicker">FAQ</p>
+            <h2>Straight answers.</h2>
+          </div>
+          <div class="faq">
+            <details class="faq-item">
+              <summary>What is GrokSync?</summary>
+              <p>GrokSync is a self-hosted private board so your PC, laptop, phone, and agents share one continue packet. Sit down anywhere and already know what you were doing on the others.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is there a hosted GrokSync account?</summary>
+              <p>No. You clone the MIT repo and host the site yourself. There is no public hosted account.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What is a continue packet?</summary>
+              <p>A short, redacted snapshot of the last project, a one-line note, and optional next step. It travels with you. Local claim checks stay on the machine you sat down at.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can I use it on a phone?</summary>
+              <p>Yes. GrokSync is a website you host. Open your board URL in any browser on phone, laptop, or desktop.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Where does my data live?</summary>
+              <p>On the host you deploy. Password gate. Optional encrypted notes. Nothing here is a vendor cloud that reads your disk.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What license is it under?</summary>
+              <p>MIT. Fonts under public/fonts/fontshare keep their ITF Free Font License files.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="close" aria-labelledby="close-title">
+          <h2 id="close-title">Your board. Your host.</h2>
+          <p>Clone the repo. Host it. Sit down on the next machine with the same packet waiting.</p>
+          <div class="ctas">
+            <a class="btn primary" href="https://github.com/Pitchfork-and-Torch/groksync">Get the code</a>
+            <a class="btn" href="#setup">Run your own</a>
+          </div>
+        </section>
+
+        <footer class="foot">
+          <span>MIT. Pitchfork-and-Torch.</span>
+          <a href="https://github.com/Pitchfork-and-Torch/groksync">github.com/Pitchfork-and-Torch/groksync</a>
+        </footer>
+      </div>
+    </main>
+
+    <div class="sticky" id="sticky" hidden data-open="false">
+      <p>Sit down anywhere. Already know.</p>
+      <a class="btn primary" href="https://github.com/Pitchfork-and-Torch/groksync">Get the code</a>
+      <button class="icon-btn" id="sticky-close" type="button" aria-label="Dismiss">x</button>
+    </div>
+    <script src="/js/landing.js"></script>
+    <script defer src="https://hits.jonbailey.xyz/c.js" data-site="groksync"></script>
+  </body>
+</html>
