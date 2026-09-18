@@ -153,6 +153,28 @@ function testWritePaths() {
   assert.ok(mw.includes("WRITE_API_PATHS.has(path)"));
   const handoff = readFileSync(join(root, "functions", "api", "handoff.js"), "utf8");
   assert.equal(handoff.includes("grok-bot"), false);
+  // Handoff must redact context like /api/board and /api/now (legacy absolute paths).
+  assert.ok(handoff.includes("redactBoard"), "handoff must redactBoard before return");
+}
+
+function testHandoffStyleRedact() {
+  const dirty = {
+    ...emptyBoard(),
+    devices: { pc: { id: "pc", label: "PC", note: "", last_seen: "t" } },
+    context: {
+      updated_at: "ctx",
+      project: "p",
+      note: "n",
+      next: "x",
+      files: ["C:\\Users\\Example\\secret.js", "src/ok.js"],
+      branch: "main",
+      claim: "c",
+      source_device: "pc",
+    },
+  };
+  const safe = redactBoard(dirty);
+  assert.ok(!safe.context.files.some((f) => /Users|home/i.test(f)));
+  assert.ok(safe.context.files.includes("secret.js") || safe.context.files.includes("src/ok.js"));
 }
 
 testSlug();
@@ -165,4 +187,5 @@ testRedactBoard();
 testCleanContextEnc();
 testParseBoard();
 testWritePaths();
+testHandoffStyleRedact();
 console.log("SYNC ENGINE OK");

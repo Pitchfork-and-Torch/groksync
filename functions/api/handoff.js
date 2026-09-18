@@ -1,4 +1,4 @@
-import { cap, json, normalizeDeviceId, parseBoard } from "../_lib.js";
+import { cap, json, normalizeDeviceId, parseBoard, redactBoard } from "../_lib.js";
 
 export async function onRequestPost(context) {
   const kv = context.env.BOARD;
@@ -26,5 +26,7 @@ export async function onRequestPost(context) {
   }
   board.updated_at = now;
   await kv.put("board", JSON.stringify(board));
-  return json({ ok: true, device: board.devices[id], context: board.context });
+  // Same redaction as GET /api/board and /api/now — never return absolute home paths.
+  const safe = redactBoard(board);
+  return json({ ok: true, device: safe.devices[id], context: safe.context });
 }
