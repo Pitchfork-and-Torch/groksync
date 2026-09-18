@@ -1,4 +1,6 @@
-const ALLOWED = new Set(["pc", "mac", "phone", "agent", "other"]);
+import { cap } from "../_lib.js";
+
+const ALLOWED = new Set(["pc", "mac", "phone", "iphone", "agent", "grok-bot", "other"]);
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -32,7 +34,7 @@ export async function onRequestPost(context) {
   if (!board.devices) board.devices = {};
   board.devices[id] = {
     id,
-    label: String(body.label || id),
+    label: cap(body.label || id, 40),
     note: String(body.note || "").slice(0, 240),
     last_seen: new Date().toISOString(),
   };
