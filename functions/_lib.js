@@ -169,7 +169,8 @@ function cleanClaim(c) {
     : [];
   return {
     project: cap(c.project, 80).replace(/[\\/]/g, "-"),
-    note: cap(c.note, 240),
+    // Same path scrub as pickup/notes — claim notes were only length-capped.
+    note: cap(scrubPathText(c.note), 240),
     session: cap(c.session, 40),
     paths,
   };

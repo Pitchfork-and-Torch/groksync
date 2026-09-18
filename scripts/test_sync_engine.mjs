@@ -228,4 +228,25 @@ function testNotesPathScrub() {
 
 testPickupPathScrub();
 testNotesPathScrub();
+
+function testClaimsNotePathScrub() {
+  const next = mergeSnapshot(emptyBoard(), {
+    claims: [
+      { project: "p", note: "/Users/alice/secret/plan.md", paths: ["~/src/app"] },
+      { project: "q", note: "C:\\Users\\bob\\keys.txt", paths: [] },
+      { project: "r", note: "ship leftover", paths: [] },
+      { project: "s", note: "~/src/app", paths: [] },
+    ],
+  }, "t");
+  assert.equal(next.claims[0].note, "plan.md");
+  assert.equal(next.claims[1].note, "keys.txt");
+  assert.equal(next.claims[2].note, "ship leftover");
+  assert.equal(next.claims[3].note, "~/src/app");
+  assert.deepEqual(next.claims[0].paths, ["~/src/app"]);
+  const out = redactBoard({ ...next, updated_at: "t" });
+  assert.ok(!out.claims.some((x) => /Users|home|\\\\/i.test(x.note || "")));
+}
+
+testClaimsNotePathScrub();
 console.log("SYNC ENGINE OK");
+
