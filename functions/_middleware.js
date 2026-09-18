@@ -71,9 +71,15 @@ export async function onRequest(context) {
   const writeTok = env.GROKSYNC_WRITE_TOKEN || "";
   const gotBearer = bearer(request);
   const writeOk = Boolean(writeTok) && gotBearer && gotBearer === writeTok;
+  // CLI write token must cover the same agent paths the Python tools hit.
   if (
     writeOk &&
-    (path === "/api/snapshot" || path === "/api/device" || path === "/api/board")
+    (path === "/api/snapshot" ||
+      path === "/api/device" ||
+      path === "/api/board" ||
+      path === "/api/context" ||
+      path === "/api/handoff" ||
+      path === "/api/now")
   ) {
     return withNoStore(await next());
   }
