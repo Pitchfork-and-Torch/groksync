@@ -1,0 +1,24 @@
+# GrokSync
+
+> Self-hosted private board so work context follows you across devices and agents.
+
+- Version: 1.2.0
+- License: MIT
+- Code: https://github.com/Pitchfork-and-Torch/groksync
+- Site: https://groksync.jonbailey.xyz/
+
+## What it is
+
+A password-gated website you host. Continue packet, device stamps, handoff, optional encrypted notes.
+
+## What it is not
+
+A public hosted account. Not an installer or desktop app. You run your own instance in a browser.
+
+## Continue packet
+
+Last project, a one-line note, optional next step. Paths are slugs, never home directories.
+
+## Setup
+
+Clone the repo. Host it yourself. See README.
