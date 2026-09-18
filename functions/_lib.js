@@ -129,9 +129,26 @@ function cleanList(arr, fn, n) {
   return out;
 }
 
+/** Basename absolute / home path-looking free text (pickup titles/notes). */
+function scrubPathText(s) {
+  const original = String(s || "");
+  let t = original.replace(/\\/g, "/").trim();
+  if (!t) return "";
+  const abs =
+    t.startsWith("/") ||
+    /^[A-Za-z]:\//.test(t) ||
+    t.startsWith("//") ||
+    /^(Users|home)\//i.test(t);
+  if (!abs) return t;
+  t = t.replace(/^[A-Za-z]:/, "").replace(/^\/+/, "");
+  t = t.replace(/^(Users|home)\/[^/]+\/?/i, "");
+  const parts = t.split("/").filter(Boolean);
+  return parts.length ? parts[parts.length - 1] : "";
+}
+
 function cleanPickup(p) {
-  const title = cap(p.title, 120);
-  const note = cap(p.note, 240);
+  const title = cap(scrubPathText(p.title), 120);
+  const note = cap(scrubPathText(p.note), 240);
   if (!title && !note) return null;
   return { title, note };
 }

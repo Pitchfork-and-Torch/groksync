@@ -177,6 +177,25 @@ function testHandoffStyleRedact() {
   assert.ok(safe.context.files.includes("secret.js") || safe.context.files.includes("src/ok.js"));
 }
 
+
+function testPickupPathScrub() {
+  const next = mergeSnapshot(emptyBoard(), {
+    pickup: [
+      { title: "/Users/alice/secret/todo.md", note: "C:\\Users\\bob\\passwords.txt" },
+      { title: "Buy milk", note: "normal leftover" },
+      { title: "~/src/app", note: "keep slug" },
+    ],
+  }, "t");
+  assert.equal(next.pickup[0].title, "todo.md");
+  assert.equal(next.pickup[0].note, "passwords.txt");
+  assert.equal(next.pickup[1].title, "Buy milk");
+  assert.equal(next.pickup[1].note, "normal leftover");
+  assert.equal(next.pickup[2].title, "~/src/app");
+  assert.equal(next.pickup[2].note, "keep slug");
+  const out = redactBoard({ ...next, updated_at: "t" });
+  assert.ok(!out.pickup.some((x) => /Users|home|\\\\/i.test(x.title + x.note)));
+}
+
 testSlug();
 testDevice();
 testMergePreservesContext();
@@ -188,4 +207,5 @@ testCleanContextEnc();
 testParseBoard();
 testWritePaths();
 testHandoffStyleRedact();
+testPickupPathScrub();
 console.log("SYNC ENGINE OK");
