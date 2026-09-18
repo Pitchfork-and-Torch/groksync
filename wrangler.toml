@@ -1,0 +1,9 @@
+name = "groksync"
+compatibility_date = "2026-09-01"
+pages_build_output_dir = "dist"
+
+# Create a KV namespace, then paste the id:
+#   npx wrangler kv namespace create BOARD
+[[kv_namespaces]]
+binding = "BOARD"
+id = "REPLACE_ME"
