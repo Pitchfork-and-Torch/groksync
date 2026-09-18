@@ -207,5 +207,25 @@ testCleanContextEnc();
 testParseBoard();
 testWritePaths();
 testHandoffStyleRedact();
+
+function testNotesPathScrub() {
+  const next = mergeSnapshot(emptyBoard(), {
+    notes: [
+      { title: "/Users/alice/secret/plan.md", body: "C:\\Users\\bob\\keys.txt" },
+      { title: "Ship notes", body: "normal body" },
+      { title: "~/src/app", body: "keep slug" },
+    ],
+  }, "t");
+  assert.equal(next.notes[0].title, "plan.md");
+  assert.equal(next.notes[0].body, "keys.txt");
+  assert.equal(next.notes[1].title, "Ship notes");
+  assert.equal(next.notes[1].body, "normal body");
+  assert.equal(next.notes[2].title, "~/src/app");
+  assert.equal(next.notes[2].body, "keep slug");
+  const out = redactBoard({ ...next, updated_at: "t" });
+  assert.ok(!out.notes.some((x) => /Users|home|\\\\/i.test(x.title + x.body)));
+}
+
 testPickupPathScrub();
+testNotesPathScrub();
 console.log("SYNC ENGINE OK");

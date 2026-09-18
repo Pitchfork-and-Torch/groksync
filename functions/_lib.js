@@ -176,8 +176,9 @@ function cleanClaim(c) {
 }
 
 function cleanNote(n) {
-  const title = cap(n.title, 80);
-  const body = cap(n.body || n.note, 240);
+  // Same path scrub as pickup  -  notes were only length-capped before.
+  const title = cap(scrubPathText(n.title), 80);
+  const body = cap(scrubPathText(n.body || n.note), 240);
   if (!title && !body) return null;
   return { title, body };
 }
