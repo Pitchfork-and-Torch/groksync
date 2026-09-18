@@ -1,0 +1,41 @@
+:root {
+  --font-display: "Clash Display", "Satoshi", system-ui, sans-serif;
+  --font-sans: "Satoshi", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+
+  --text-display: clamp(1.8rem, 1.2rem + 2vw, 2.6rem);
+  --text-h1: clamp(1.4rem, 1.1rem + 1vw, 1.85rem);
+  --text-h2: 0.78rem;
+  --text-body: 1rem;
+  --text-ui: 0.9rem;
+  --text-caption: 0.75rem;
+
+  --color-bg: #071016;
+  --color-bg-elev: #0d1a22;
+  --color-bg-card: #10222c;
+  --color-line: rgba(140, 210, 200, 0.16);
+  --color-fg: #e8f4f2;
+  --color-muted: #8aa8a4;
+  --color-subtle: #5d7a76;
+  --color-accent: #7dffc3;
+  --color-warn: #ffc857;
+  --color-danger: #ff6b6b;
+  --color-live: #7dffc3;
+  --focus-ring: #7dffc3;
+
+  --radius: 14px;
+  --tap: 48px;
+
+  --motion-dur-fast: 120ms;
+  --motion-dur-base: 200ms;
+  --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  --motion-scale: 0.97;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
