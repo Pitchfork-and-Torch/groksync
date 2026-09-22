@@ -14,3 +14,7 @@
 /api/*
   Cache-Control: no-store
   CDN-Cache-Control: no-store
+
+/VERSION
+  Cache-Control: public, max-age=300, must-revalidate
+  Content-Type: text/plain; charset=utf-8
