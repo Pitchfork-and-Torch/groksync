@@ -17,3 +17,10 @@
 
 /sitemap.xml
   Cache-Control: public, max-age=3600
+
+/icon-512.png
+  Cache-Control: public, max-age=86400
+
+/icon-192.png
+  Cache-Control: public, max-age=86400
+
