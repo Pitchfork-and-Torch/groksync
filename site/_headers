@@ -24,3 +24,7 @@
 /icon-192.png
   Cache-Control: public, max-age=86400
 
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
+  Content-Type: image/png
