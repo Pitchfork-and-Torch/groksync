@@ -1,0 +1,9 @@
+{
+  "project": "my-app",
+  "note": "fix cache headers, then stop",
+  "files": ["src/app.js"],
+  "branch": "main",
+  "claim": "held",
+  "next": "open the PR",
+  "source_device": "pc"
+}
