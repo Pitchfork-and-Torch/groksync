@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GrokSync</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="theme-color" content="#071016" />
+    <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/public/fonts/fontshare/fonts.css" />
+    <link rel="stylesheet" href="/css/tokens.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/ascii-magic.css" />
+  </head>
+  <body>
+    <main class="gate">
+      <form class="card gate-card" id="loginForm" autocomplete="current-password">
+        <p class="kicker">Private board</p>
+        <h1>GrokSync</h1>
+        <p class="sub">Your devices, one picture. Password required. Cookie lasts 30 days.</p>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required autocomplete="current-password" />
+        <button class="primary" type="submit">Unlock</button>
+        <p class="err" id="err" hidden></p>
+      </form>
+    </main>
+    <script>
+      const form = document.getElementById("loginForm");
+      const err = document.getElementById("err");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        err.hidden = true;
+        const password = document.getElementById("password").value;
+        const res = await fetch("/api/login", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ password }),
+        });
+        if (!res.ok) {
+          err.hidden = false;
+          err.textContent = "Wrong password.";
+          return;
+        }
+        location.href = "/";
+      });
+    </script>
+  </body>
+</html>

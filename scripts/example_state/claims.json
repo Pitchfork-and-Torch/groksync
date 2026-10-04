@@ -1,0 +1,8 @@
+[
+  {
+    "project": "my-app",
+    "note": "editing headers",
+    "session": "abc123",
+    "paths": ["~/src/my-app"]
+  }
+]
